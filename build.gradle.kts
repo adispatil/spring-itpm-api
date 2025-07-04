@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.itpm.demoapi"
-version = "0.0.1-SNAPSHOT"
+version = "1"
 
 java {
 	toolchain {

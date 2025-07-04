@@ -9,3 +9,11 @@ class DemoapiApplication
 fun main(args: Array<String>) {
 	runApplication<DemoapiApplication>(*args)
 }
+
+@RestController
+@RequestMapping("api/hello")
+class HelloWorldController {
+
+    @GetMapping
+    fun helloWorld(): String = "Hello, this is a REST endpoint!"
+}
