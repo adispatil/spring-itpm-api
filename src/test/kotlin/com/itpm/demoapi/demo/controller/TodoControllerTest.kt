@@ -78,8 +78,9 @@ class TodoControllerTest {
         every { todoService.updateTodo(userId, todoId, request) } returns updatedTodo
 
         mockMvc.perform(
-            put("/api/todos/$todoId")
+            put("/api/todos")
                 .header("userId", userId)
+                .param("todoId", todoId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request))
         )
@@ -100,8 +101,9 @@ class TodoControllerTest {
         every { todoService.updateTodo(userId, todoId, request) } returns null
 
         mockMvc.perform(
-            put("/api/todos/$todoId")
+            put("/api/todos")
                 .header("userId", userId)
+                .param("todoId", todoId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request))
         )
@@ -118,8 +120,9 @@ class TodoControllerTest {
         every { todoService.deleteTodo(userId, todoId) } returns true
 
         mockMvc.perform(
-            delete("/api/todos/$todoId")
+            delete("/api/todos")
                 .header("userId", userId)
+                .param("todoId", todoId)
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.success").value(true))
@@ -134,8 +137,9 @@ class TodoControllerTest {
         every { todoService.deleteTodo(userId, todoId) } returns false
 
         mockMvc.perform(
-            delete("/api/todos/$todoId")
+            delete("/api/todos")
                 .header("userId", userId)
+                .param("todoId", todoId)
         )
             .andExpect(status().isNotFound)
             .andExpect(jsonPath("$.success").value(false))
